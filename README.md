@@ -3,6 +3,7 @@
 # How to Run project on local:
 
 * install nodejs.
+* install mongoDB.
 * open terminal in a directory and run these lines. (one-by-one)
 ```
 
