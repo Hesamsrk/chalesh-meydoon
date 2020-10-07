@@ -9,7 +9,6 @@ passport.serializeUser(function(user, done) {
    
 passport.deserializeUser(function(id, done) {
     User.findById(id, function (err, user) {
-        if(err)  console.log(err)
         done(err, user);
     });
 });
@@ -47,7 +46,7 @@ passport.use('local.login' , new localStrategy({
 } , (req , email ,  password , done) => {
     User.findOne({ 'email' : email } , (err , user) => {
         if(err) return done(err);
-        user
+
         if(! user || ! user.comparePassword(password)) {
             return done(null , false , req.flash('errors' , 'اطلاعات وارد شده مطابقت ندارد'));
         }

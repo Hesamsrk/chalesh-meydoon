@@ -1,5 +1,6 @@
 const controller = require('app/http/controllers/controller');
 const Course = require('app/models/course');
+const fs = require('fs');
 
 class indexController extends controller {
     index(req , res) {
@@ -12,11 +13,17 @@ class indexController extends controller {
 
     async store(req , res) {
         let status = await this.validationData(req);
+        
         if(! status) {
+            if(req.file) 
+                fs.unlink(req.file.path ,(err) => {});
             return this.back(req,res);
         }
         
         // images
+        
+
+
         // create course
         let images = req.body.images;
         let { title , body , type , price , tags} = req.body;

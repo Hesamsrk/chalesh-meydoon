@@ -64,6 +64,7 @@ module.exports = class Application {
     }
 
     setRouters() {
+        app.use(require('app/routes/api'));
         app.use(require('app/routes/web'));        
     }
 }
