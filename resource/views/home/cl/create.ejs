@@ -1,0 +1,77 @@
+<div
+  class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom mt-3"
+>
+  <h2>ایجاد چالش جدید</h2>
+</div>
+<form
+  autocomplete="off"
+  class="form-horizontal"
+  action="/cl/create"
+  method="post"
+  enctype="application/x-www-form-urlencoded"
+>
+  <%- include(viewPath('layouts/error-messages')) -%>
+
+  <div class="form-group row">
+    <div class="col">
+      <label for="title" class="control-label font-weight-bold"
+        >عنوان چالش</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        id="title"
+        placeholder="عنوان را وارد کنید"
+        value="<%= old('title') %>"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <label for="body" class="control-label font-weight-bold"
+        >توضیحات چالش</label
+      >
+      <textarea
+        rows="5"
+        class="form-control"
+        name="body"
+        id="body"
+        placeholder="توضیحات را وارد کنید"
+      ><%= old('body') %></textarea
+      >
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <label for="cover" class="control-label font-weight-bold"
+        >آواتار چالش</label
+      >
+      <input
+        type="file"
+        class="form-control"
+        name="cover"
+        id="cover"
+        placeholder="تصویر چالش را وارد کنید"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <label for="tags" class="control-label font-weight-bold">تگ ها</label>
+      <input
+        type="text"
+        class="form-control"
+        name="tags"
+        id="tags"
+        placeholder="تگ ها را وارد کنید"
+        value="<%= old('title') %>"
+      />
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <button type="submit" class="btn btn-danger">ارسال</button>
+    </div>
+  </div>
+</form>

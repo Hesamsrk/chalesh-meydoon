@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const uniqueString = require('unique-string')
+const Schema = mongoose.Schema;
 
-const userSchema = mongoose.Schema({
+const userSchema = Schema({
     name : { type : String , required : true },
     admin : { type : Boolean ,  default : 0 },
-    email : { type : String , unique : true  ,required : true},
+    email : { type : String , unique : false  ,required : true},
     password : { type : String ,  required : true },
+    viewed_posts: [{type: Schema.Types.ObjectId, ref:"Post"}],
+    saved_posts:[{type: Schema.Types.ObjectId , ref:"Post"}],
     rememberToken : { type : String , default : null }
 } , { timestamps : true });
 
