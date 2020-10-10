@@ -8,20 +8,20 @@
   class="form-horizontal"
   action="/cl/create"
   method="post"
-  enctype="application/x-www-form-urlencoded"
+  enctype="multipart/form-data"
 >
   <%- include(viewPath('layouts/error-messages')) -%>
-
+  <input type="hidden" id="official" name="official" value="false"></input>
   <div class="form-group row">
     <div class="col">
-      <label for="title" class="control-label font-weight-bold"
+      <label for="challenge_title" class="control-label font-weight-bold"
         >عنوان چالش</label
       >
       <input
         type="text"
         class="form-control"
-        name="title"
-        id="title"
+        name="challenge_title"
+        id="challenge_title"
         placeholder="عنوان را وارد کنید"
         value="<%= old('title') %>"
       />
@@ -75,3 +75,4 @@
     </div>
   </div>
 </form>
+
