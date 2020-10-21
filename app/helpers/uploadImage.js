@@ -1,26 +1,19 @@
 const multer = require('multer');
 const mkdirp = require('mkdirp');
-const fs = require('fs');
-
+const path = require('path');
 const getDirImage = (req) => {
-    if (req.body.cover) {
-        console.log("cover : " + req.body.cover);
-        return './public/uploads/images/challenge/' + req.body.challenge_title + '/cover'
-    } else if (req.body.image) {
-        console.log("image : " + req.body.image);
-        return './public/uploads/images/challenge/posts/' + Date.now()
+    if (req.body.challenge_title!=undefined) {
+        let challenge_title = req.body.challenge_title;
+        return './public/uploads/images/challenge/' + challenge_title + "/cover"
     }
-    console.log("mylog: something went wrong in getDirImage(req)");
-    return './public/uploads/images/challenge/error'
+    return  './public/uploads/images/null';
 }
-const getFileName = (req,file)=>{
-    let filename = ''
-    let filePath = getDirImage(req) + '/' + file.originalname;
-    if (!fs.existsSync(filePath))
-        filename = file.originalname
-    else
-        filename = Date.now() + '-' + file.originalname;
-    return filename
+const getFileName = (req, file) => {
+    if (req.body.challenge_title!=undefined) {
+        console.log(JSON.stringify(file));
+        return 'cover'+path.extname(file.originalname)
+    }
+    return ""+Date.now()+path.extname(file.originalname);
 }
 
 
@@ -31,7 +24,7 @@ const ImageStorage = multer.diskStorage({
         mkdirp(dir, (err) => cb(null, dir))
     },
     filename: (req, file, cb) => {
-        let filename = getFileName(req,file) 
+        let filename = getFileName(req, file)
         cb(null, filename)
     }
 })

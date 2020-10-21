@@ -9,8 +9,8 @@ const mongoose = require('mongoose'); // ease working with mongoDB
 const flash = require('connect-flash'); // work with flash data (show errors, warning and etc. to user)
 const passport = require('passport'); // validate input data
 const Helpers = require('app/helpers'); // some helping functions
-
 const rememberLogin = require('app/http/middleware/rememberLogin'); // remembers if the user is already logged in
+const { fileLoader } = require('ejs');
 
 module.exports = class Application {
     constructor() {
@@ -61,6 +61,7 @@ module.exports = class Application {
             app.locals = new Helpers(req, res).getObjects();
             next();
         }); 
+        
     }
 
     setRouters() {
