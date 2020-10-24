@@ -1,6 +1,8 @@
 const controller = require('app/http/controllers/controller');
 const Challenge =require('app/models/challenge');
 const fs = require('fs');
+const sharp = require('sharp');
+const path = require("path")
 class challengeController extends controller {
     
     showCreateForm(req , res) {
@@ -8,8 +10,12 @@ class challengeController extends controller {
         res.render('home/cl/create' , { title });
     }
 
-    showChallngeList(req,res){
-        res.json('challenge list')
+    async showChallngeList(req,res){
+        let page = req.query.page || 1;
+        let challenges = await Challenge.paginate({} , { page , sort : { createdAt : 1 } , limit : 5 });
+        res.render('home/cl/index',{ title : 'چالش ها' , challenges })
+        
+        
     }
 
     async saveChallengeProcess(req  ,res){
@@ -20,26 +26,60 @@ class challengeController extends controller {
             return this.back(req,res);
         }
         
-        // images
-        
-
 
         // create course
-        
-        let { challenge_title , official ,body, cover , tags} = req.body;
 
-        let newChallenge = new Challenge({
+        let { challenge_title , official ,cover,body, tags} = req.body;
+
+        let challenge_data = {
             challenge_user : req.user._id,
             challenge_title,
             official,
             body,
             cover,
             tags
-        });
+        };
+
+        
+        if(req.file){
+            // make other sizes for cover
+            let image_name = this.imageResize(req.file);
+            challenge_data.cover = JSON.stringify(image_name);
+        }
+
+
+        let newChallenge = new Challenge(challenge_data);
 
         await newChallenge.save();
 
         return res.redirect('/cl/');  
+    }
+
+    imageResize(image) {
+        const imageInfo = path.parse(image.path);
+        console.log(imageInfo,image.destination,image.filename);
+        let addresImages = {};
+        addresImages['original'] = this.getUrlImage(`${image.destination}/${image.filename}`);
+
+        const resize = size => {
+            let w = size.w;
+            let h = size.h;
+            let imageName = `${imageInfo.name}-${w+'X'+h}${imageInfo.ext}`;
+            addresImages[w+'X'+h] = this.getUrlImage(`${image.destination}/${imageName}`);
+            
+            sharp(image.path)
+                .resize(w,h)
+                .png()
+                .toFile(`${image.destination}/${imageName}`);
+        }
+
+        [{w:360,h:360}].map(resize);
+
+        return addresImages;
+    }
+
+    getUrlImage(dir) {
+        return dir.substring(8);
     }
 
 

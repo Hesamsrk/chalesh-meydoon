@@ -1,0 +1,34 @@
+<div
+  class="d-flex justify-content-between align-items-center mb-3 border-bottom-1"
+>
+  <h2>لیست چالش ها</h2>
+  <div class="btn-group">
+    <a href="/cl/create" class="btn btn-sm btn-primary">ایجاد چالش جدید</a>
+  </div>
+</div>
+<div class="row">
+  <!-- Blog Entries Column -->
+  <div class="col-md-8">
+    <!-- Search Widget -->
+    <div class="card my-2">
+      <h5 class="card-header">جستجو</h5>
+      <div class="card-body">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="مثلا : ختم جز سی قرآن کریم :)"
+          />
+          <span class="input-group-append">
+            <button class="btn btn-secondary" type="button">برو</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- Blog Post -->
+    <% challenges.docs.forEach(challenge => { %> <%-
+    include(viewPath('layouts/challenge') ,{challenge}) %> <%})%>
+    <!-- Pagination -->
+    <%- include(viewPath('layouts/pagination') ,{ pagination : challenges}) %>
+  </div>
+</div>

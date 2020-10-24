@@ -1,0 +1,11 @@
+<div class="card mb-4">
+    <img class="card-img-top" src="<%= JSON.parse(challenge.cover)['360X360'] %>" alt="challenge cover">
+    <div class="card-body">
+      <h3 class="card-title"><%=challenge.challenge_title%></h2>
+      <p class="card-text"><%=challenge.body%></p>
+      <a href="#" class="btn btn-primary">مشاهده</a>
+    </div>
+    <div class="card-footer text-muted">
+      ایجاد شده در تاریخ<%=challenge.createdAt%> توسط  <%=challenge.challenge_user%>
+    </div>
+  </div>

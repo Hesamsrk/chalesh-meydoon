@@ -10,7 +10,6 @@ const getDirImage = (req) => {
 }
 const getFileName = (req, file) => {
     if (req.body.challenge_title!=undefined) {
-        console.log(JSON.stringify(file));
         return 'cover'+path.extname(file.originalname)
     }
     return ""+Date.now()+path.extname(file.originalname);
@@ -21,7 +20,7 @@ const ImageStorage = multer.diskStorage({
     destination: (req, file, cb) => {
         let dir = getDirImage(req);
 
-        mkdirp(dir, (err) => cb(null, dir))
+        mkdirp(dir).then((err) => cb(null , dir))
     },
     filename: (req, file, cb) => {
         let filename = getFileName(req, file)

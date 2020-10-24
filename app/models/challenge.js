@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate');
 const challengeSchema = Schema({
     challenge_user : { type : Schema.Types.ObjectId , ref : 'User'},
     challenge_title : { type : String , required : true },
@@ -12,6 +12,6 @@ const challengeSchema = Schema({
     userCount : { type : Number , default : 0 },
     viewCount : { type : Number , default : 0 },
 } , { timestamps : true });
-
+challengeSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Challenge' , challengeSchema);

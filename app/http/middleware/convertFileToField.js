@@ -1,6 +1,5 @@
-const User = require('app/models/user');
 const middleware = require('./middleware');
-const {getDirImage} = require('app/helpers/uploadImage');
+
 
 class convertFileToField extends middleware {
 
