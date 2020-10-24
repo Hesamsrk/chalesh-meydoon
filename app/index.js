@@ -11,6 +11,7 @@ const passport = require('passport'); // validate input data
 const Helpers = require('app/helpers'); // some helping functions
 const rememberLogin = require('app/http/middleware/rememberLogin'); // remembers if the user is already logged in
 const { fileLoader } = require('ejs');
+const colors = require('colors');
 
 module.exports = class Application {
     constructor() {
@@ -61,6 +62,11 @@ module.exports = class Application {
             app.locals = new Helpers(req, res).getObjects();
             next();
         }); 
+        app.use((req, res,next)=>{
+            console.log(`${req.method} request on ${req.url}`.bold.yellow);
+            next();
+        })
+        
         
     }
 

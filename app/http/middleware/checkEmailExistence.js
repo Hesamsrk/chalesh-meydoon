@@ -10,13 +10,13 @@ class checkEmailExistence extends middleware {
             if(err) console.log('mylog : err in email-existence.check');
 
             if (response === false) {
-                console.log('email was invalid');
+                console.log('email was invalid'.red);
                 req.flash('errors','چنین ایمیلی وجود ندارد. لطفا یک ایمیل حقیقی وارد کنید.')
                 req.flash('formData' , req.body);
                 return res.redirect(req.header('Referer') || '/');
             }
             else if(response===true){
-                console.log('email was valid');
+                console.log('email was valid'.green);
             }
             else{
                 console.log("response was : ",response);
