@@ -1,5 +1,6 @@
 <div class="card mb-4">
-    <img class="card-img-top" src="<%= JSON.parse(challenge.cover)['360X360'] %>" alt="challenge cover">
+
+    <img class="card-img-top" src="<%= challenge.cover.original%>" alt="challenge cover">
     <div class="card-body">
       <h3 class="card-title"><%=challenge.challenge_title%></h2>
       <p class="card-text"><%=challenge.body%></p>

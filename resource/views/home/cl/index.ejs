@@ -26,9 +26,16 @@
       </div>
     </div>
     <!-- Blog Post -->
-    <% challenges.docs.forEach(challenge => { %> <%-
-    include(viewPath('layouts/challenge') ,{challenge}) %> <%})%>
+    <% challenges.docs.forEach(challenge => { %>
+      
+      
+      <%- include(viewPath('layouts/challenge') ,{challenge}) %> 
+    
+
+    <%})%>
     <!-- Pagination -->
+
+
     <%- include(viewPath('layouts/pagination') ,{ pagination : challenges}) %>
   </div>
 </div>

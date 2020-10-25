@@ -2,7 +2,8 @@ const controller = require('app/http/controllers/controller');
 const Challenge =require('app/models/challenge');
 const fs = require('fs');
 const sharp = require('sharp');
-const path = require("path")
+const path = require("path");
+const rimraf = require('rimraf');
 class challengeController extends controller {
     
     showCreateForm(req , res) {
@@ -21,8 +22,13 @@ class challengeController extends controller {
     async saveChallengeProcess(req  ,res){
         let status = await this.validationData(req);
         if(! status) {
-            if(req.file) 
-                fs.unlink(req.file.path ,(err) => {});
+            if(req.file){
+                let p = './public/uploads/images/challenge/' + req.body.challenge_title
+                rimraf(p,(err)=>{
+                    if(err)
+                        console.log(String(err).red);
+                })
+            }
             return this.back(req,res);
         }
         
@@ -44,7 +50,7 @@ class challengeController extends controller {
         if(req.file){
             // make other sizes for cover
             let image_name = this.imageResize(req.file);
-            challenge_data.cover = JSON.stringify(image_name);
+            challenge_data.cover = image_name;
         }
 
 
@@ -68,7 +74,6 @@ class challengeController extends controller {
             
             sharp(image.path)
                 .resize(w,h)
-                .png()
                 .toFile(`${image.destination}/${imageName}`);
         }
 
