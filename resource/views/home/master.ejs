@@ -31,20 +31,26 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
               <a class="nav-link" href="/">خانه</a>
+             <% if(auth.check){%>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/cl">چالش ها</a>
             </li>
-            <% if(auth.check){%>
+            
             <li class="nav-item">
               <a class="nav-link" href="#">تنظیمات</a>
             </li>
+            <% if(auth.user.admin){ %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin">ورود به پنل مدیریت</a>
+                </li>
+            <%}%>
             <%}%>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if(auth.check) { %>
             <li>
-              <a class="btn btn-success btn-sm ml-2" href="/user-panel"
+              <a class="btn btn-success btn-sm ml-2" href="/user_panel"
                 >پنل کاربری</a
               >
             </li>
