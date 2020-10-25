@@ -2,14 +2,14 @@ const multer = require('multer');
 const mkdirp = require('mkdirp');
 const path = require('path');
 const getDirImage = (req) => {
-    if (req.body.challenge_title!=undefined) {
+    if (req.body.challenge_title!==undefined) {
         let challenge_title = req.body.challenge_title;
         return './public/uploads/images/challenge/' + challenge_title + "/cover"
     }
     return  './public/uploads/images/null';
 }
 const getFileName = (req, file) => {
-    if (req.body.challenge_title!=undefined) {
+    if (req.body.challenge_title!==undefined) {
         return 'cover'+path.extname(file.originalname)
     }
     return ""+Date.now()+path.extname(file.originalname);

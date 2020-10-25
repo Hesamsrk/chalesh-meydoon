@@ -1,5 +1,5 @@
 <div class="card mb-4">
-    <% if(challenge.cover != undefined ){%>
+    <% if(challenge.cover !== undefined ){%>
     <img class="card-img-top" src="<%= challenge.cover['360X360'] %>" alt="challenge cover">
     <%} else{%>
 
@@ -7,7 +7,7 @@
 
     <%}%>
     <div class="card-body">
-      <h3 class="card-title"><%=challenge.challenge_title%></h2>
+      <h3 class="card-title"><%= challenge.challenge_title %></h3>
       <p class="card-text"><%=challenge.body%></p>
       <a href="#" class="btn btn-primary">مشاهده</a>
     </div>
