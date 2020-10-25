@@ -33,7 +33,6 @@ class challengeController extends controller {
         }
         
 
-        // create course
 
         let { challenge_title , official ,cover,body, tags} = req.body;
 
