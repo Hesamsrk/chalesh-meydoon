@@ -8,6 +8,7 @@
 ```
 
 git clone <repository>
+// then move to the folder that includes pakages.json
 npm install
 node server.js
 
