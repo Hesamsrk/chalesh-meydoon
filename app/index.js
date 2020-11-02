@@ -12,7 +12,7 @@ const Helpers = require('app/helpers'); // some helping functions
 const rememberLogin = require('app/http/middleware/rememberLogin'); // remembers if the user is already logged in
 const { fileLoader } = require('ejs');
 const colors = require('colors');
-
+const logger = require('app/logger');
 module.exports = class Application {
     constructor() {
         this.setupExpress(); // create and config server  
@@ -62,10 +62,7 @@ module.exports = class Application {
             app.locals = new Helpers(req, res).getObjects();
             next();
         }); 
-        app.use((req, res,next)=>{
-            console.log(`${req.method} request on ${req.url}`.bold.yellow);
-            next();
-        })
+        app.use(logger.requestLogger)
         
         
     }
