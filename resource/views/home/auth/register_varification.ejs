@@ -1,0 +1,26 @@
+
+<div class="row py-5 justify-content-center">
+    <div class="col-8">
+        <div class="card card-default ">
+            <div class="card-header"><h5>کد تایید را وارد کنید:</h5></div>
+            <div class="card-body">
+                <form class="form-horizontal " role="form" method="POST" action="/auth/register/varification" novalidate>
+
+                    <%- include(viewPath('layouts/error-messages')) -%>
+
+                    <div class="form-group ">
+                        <label for="code" class="control-label">کد تایید</label>
+                        <input id="code" type="text" class="form-control" name="code" value="<%= old('code') %>" required>
+                    </div>
+                    <input id="password" type="hidden"  name="password" value="<%=former.password%>" required="">
+                    <input id="email" type="hidden"  name="email" value="<%=former.email%>" required="">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            تایید ایمیل
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
