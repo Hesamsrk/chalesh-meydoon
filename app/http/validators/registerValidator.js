@@ -15,20 +15,7 @@ class registerValidator extends validator {
 
             check('email')
             .isEmail()
-            .withMessage('فیلد ایمیل معتبر نیست')
-            .custom(async value => {
-                // emailExistence.check(value,(err,response) => {
-                //     console.log(`response : ${response}`);
-                //     if (response === false) {
-                //         console.log("here");
-                //         throw new Error("چنین ایمیلی وجود ندارد")
-                //     }
-                // });
-                // console.log(err);
-                // throw err;
-
-
-            }),
+            .withMessage('فیلد ایمیل معتبر نیست'),
 
             check('password')
             .isLength({

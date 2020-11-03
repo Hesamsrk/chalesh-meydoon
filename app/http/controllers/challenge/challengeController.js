@@ -90,34 +90,3 @@ class challengeController extends controller {
 
 module.exports = new challengeController();
 
-
-// try{
-//     Challenge.findOne({'challenge_title':req.body.title},(err,challenge)=>{
-//         if(err){
-//             console.log("+\n+\n+\n+\n+");
-//             throw Error("اشتباهی رخ داده است. دوباره سعی کنید.");
-//         }
-
-//         if(challenge){
-//             console.log("-\n-\n-\n-\n-");
-//             throw new Error("چنین عنوانی برای چالش دیگری انتخاب شده است")
-//         }
-//         let newChallenge = new Challenge({
-//             challenge_user :req.user._id ,
-//             challenge_title :req.body.title ,
-//             body :req.body.body ,
-//             cover :req.body.cover,
-//             tags :req.body.tags 
-//         })
-//         newChallenge.save(err => {
-//             if(err) throw err
-//             else{
-//                 res.redirect('/');
-//             }
-//         })
-        
-
-//     })
-// }catch(err){
-//     back(req, res)
-// }
