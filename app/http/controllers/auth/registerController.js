@@ -52,7 +52,7 @@ class registerController extends controller {
 
 
     async gotoVarificationPage(req, res, next) {
-        // create varification token
+        // create and save varification token
         let max = 1000000
         let min = 100000
         let token = Math.floor(
@@ -64,7 +64,7 @@ class registerController extends controller {
         });
         await newUserMailvarification.save();
 
-        //send varification email
+        //make varification email
         let subject = "چالش میدون - تایید ایمیل"
         let text = " کد تایید ایمیل:"
         text += "\n"
