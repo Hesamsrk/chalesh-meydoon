@@ -25,6 +25,10 @@ router.post('/login' , loginValidator.handle() ,loginController.loginProccess);
 router.get('/register' , registerController.showRegsitrationForm);
 router.post('/register' , registerValidator.handle() ,checkEmailExistence.handle, registerController.registerProccess);
 
+
+router.post('/register/varification' , registerController.varifyEmail);
+
+
 router.get('/password/reset' , forgotPasswordController.showForgotPassword);
 router.post('/password/email' , forgotPasswordValidator.handle() , forgotPasswordController.sendPasswordResetLink);
 

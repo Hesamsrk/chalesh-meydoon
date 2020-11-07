@@ -7,6 +7,11 @@
                 <form class="form-horizontal " role="form" method="POST" action="/auth/register/varification" novalidate>
 
                     <%- include(viewPath('layouts/error-messages')) -%>
+                    <input id="name" type="hidden"  name="name" value="<%=bud.name%>" >
+                    <input id="email" type="hidden"  name="email" value="<%=bud.email%>" >
+                    <input id="password" type="hidden"  name="password" value="<%=bud.password%>" >
+                    <input id="g-recaptcha-response" type="hidden"  name="g-recaptcha-response" value="<%=bud['g-recaptcha-response']%>" >
+
 
                     <div class="form-group ">
                         <label for="code" class="control-label">کد تایید</label>

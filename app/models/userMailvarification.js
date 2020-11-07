@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 
-const passwordReset = mongoose.Schema({
+const userMailvarification = mongoose.Schema({
     email : { type : String , required : true},
     token : { type : String , required : true} ,
-    use : { type : Boolean , default : false }
+    varified : { type : Boolean , default : false }
 } , { timestamps : { updatedAt : false } });
 
 
-module.exports = mongoose.model('passwordReset' , passwordReset);
+module.exports = mongoose.model('userMailvarification' , userMailvarification);
