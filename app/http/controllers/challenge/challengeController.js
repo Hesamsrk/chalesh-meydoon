@@ -11,12 +11,12 @@ class challengeController extends controller {
         res.render('home/cl/create' , { title });
     }
 
-    async showChallngeList(req,res){
+    async showChallengeList(req, res){
         let page = req.query.page || 1;
         let challenges = await Challenge.paginate({} , { page , sort : { createdAt : 1 } , limit : 5 });
         res.render('home/cl/index',{ title : 'چالش ها' , challenges })
         
-        
+
     }
 
     async saveChallengeProcess(req  ,res){
