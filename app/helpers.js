@@ -1,25 +1,28 @@
 const path = require('path');
 const autoBind = require('auto-bind');
+const moment = require('moment-jalaali')
+
+
 
 module.exports = class Helpers {
-    
-    constructor(req , res) {
+
+    constructor(req, res) {
         autoBind(this);
         this.req = req;
         this.res = res;
         this.formData = req.flash('formData')[0];
     }
 
-    getObjects() {        
+    getObjects() {
         return {
-            auth : {
-                check : this.req.isAuthenticated(),
-                user : this.req.user
-            }
-            ,
-            viewPath : this.viewPath,
+            ToPersianDate: this.ToPersianDate,
+            auth: {
+                check: this.req.isAuthenticated(),
+                user: this.req.user
+            },
+            viewPath: this.viewPath,
             ...this.getGlobalVaribales(),
-            old : this.old
+            old: this.old
         }
     }
 
@@ -30,11 +33,15 @@ module.exports = class Helpers {
 
     getGlobalVaribales() {
         return {
-            errors : this.req.flash('errors')
+            errors: this.req.flash('errors')
         }
     }
 
-    old(field , defaultValue = '') {
+    old(field, defaultValue = '') {
         return this.formData && this.formData.hasOwnProperty(field) ? this.formData[field] : defaultValue;
+    }
+
+    ToPersianDate(date) {
+        return moment(date)
     }
 }

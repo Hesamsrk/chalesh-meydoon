@@ -26,11 +26,12 @@
       </div>
     </div>
     <!-- Blog Post -->
-    <% challenges.docs.forEach(challenge => { %>
+    <% let i =0;%>
+    <% challenges.forEach(challenge => {let username = usernames[i]; %>
       
       
-      <%- include(viewPath('layouts/challenge') ,{challenge}) %> 
-    
+      <%- include(viewPath('layouts/challenge') ,{challenge,username}) %> 
+      <%i++;%>
 
     <%})%>
     <!-- Pagination -->

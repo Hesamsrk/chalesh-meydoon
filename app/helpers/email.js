@@ -4,7 +4,7 @@ const config = require('../../config');
 let transporter = nodemailer.createTransport({
     service: 'yahoo',
     auth: {
-        user: config.mail_server.mailAdress,
+        user: config.mail_server.mailAddress,
         pass: config.mail_server.password
     }
 });
@@ -17,7 +17,7 @@ let transporter = nodemailer.createTransport({
 async function SendMail(email_dest, subject, text) {
 
     let mailOptions = {
-        from: config.mail_server.mailAdress,
+        from: config.mail_server.mailAddress,
         to: email_dest,
         subject,
         text

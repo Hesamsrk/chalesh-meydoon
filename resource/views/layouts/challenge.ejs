@@ -1,17 +1,21 @@
 <div class="card mb-4">
-    <% if(challenge.cover !== undefined ){%>
-    <img class="card-img-top" src="<%= challenge.cover['360X360'] %>" alt="challenge cover">
-    <%} else{%>
+  <% if(challenge.cover !== undefined ){%>
+  <img
+    class="card-img-top"
+    src="<%= challenge.cover['360X360'] %>"
+    alt="challenge cover"
+  />
+  <%} else{%>
 
-    <img class="card-img-top" src="/def_cover.jpg" alt="challenge cover">
+  <img class="card-img-top" src="/def_cover.jpg" alt="challenge cover" />
 
-    <%}%>
-    <div class="card-body">
-      <h3 class="card-title"><%= challenge.challenge_title %></h3>
-      <p class="card-text"><%=challenge.body%></p>
-      <a href="#" class="btn btn-primary">مشاهده</a>
-    </div>
-    <div class="card-footer text-muted">
-      ایجاد شده در تاریخ<%=challenge.createdAt%> توسط  <%=challenge.challenge_user%>
-    </div>
+  <%}%>
+  <div class="card-body">
+    <h3 class="card-title"><%= challenge.challenge_title %></h3>
+    <p class="card-text"><%=challenge.body%></p>
+    <a href="/cl/show/<%=challenge.id%>" class="btn btn-primary">مشاهده</a>
   </div>
+  <div class="card-footer text-muted">
+     <%=ToPersianDate(challenge.createdAt).fromNow()%> توسط <%=username%>
+  </div>
+</div>

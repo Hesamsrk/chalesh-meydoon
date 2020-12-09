@@ -1,43 +1,81 @@
 const controller = require('app/http/controllers/controller');
-const Challenge =require('app/models/challenge');
-const fs = require('fs');
+const Challenge = require('app/models/challenge');
 const sharp = require('sharp');
 const path = require("path");
 const rimraf = require('rimraf');
+const User = require('app/models/user');
 class challengeController extends controller {
-    
-    showCreateForm(req , res) {
+
+    async showCreateForm(req, res) {
         const title = 'ایجاد چالش جدید';
-        res.render('home/cl/create' , { title });
+    
+        res.render('home/cl/create', {
+            title
+        });
     }
 
-    async showChallengeList(req, res){
+
+    async showChallenge(req , res){
+        let challenge = await Challenge.findOne({
+            _id : req.params.id
+        });
+        res.render('home/cl/show',{challenge})
+    }
+
+    async showChallengeList(req, res) {
         let page = req.query.page || 1;
-        let challenges = await Challenge.paginate({} , { page , sort : { createdAt : 1 } , limit : 5 });
-        res.render('home/cl/index',{ title : 'چالش ها' , challenges })
-        
+        let challenges = await Challenge.paginate({}, {
+            page,
+            sort: {
+                createdAt: 1
+            },
+            limit: 5
+        });
+        let users = [];
+        try {
+            for (let i of challenges.docs) {
+                let id = i.challenge_user;
+                let user = await User.findOne({
+                    _id : id
+                });
+                users.push(user)
 
+            }
+            res.render('home/cl/index', {
+                title: 'چالش ها',
+                challenges: challenges.docs,
+                usernames : users.map(user=>user.email)
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    async saveChallengeProcess(req  ,res){
+    async saveChallengeProcess(req, res) {
         let status = await this.validationData(req);
-        if(! status) {
-            if(req.file){
+        if (!status) {
+            if (req.file) {
                 let p = './public/uploads/images/challenge/' + req.body.challenge_title
-                rimraf(p,(err)=>{
-                    if(err)
+                rimraf(p, (err) => {
+                    if (err)
                         console.log(String(err).red);
                 })
             }
-            return this.back(req,res);
+            return this.back(req, res);
         }
-        
 
 
-        let { challenge_title , official ,cover,body, tags} = req.body;
+
+        let {
+            challenge_title,
+            official,
+            cover,
+            body,
+            tags
+        } = req.body;
 
         let challenge_data = {
-            challenge_user : req.user._id,
+            challenge_user: req.user._id,
             challenge_title,
             official,
             body,
@@ -45,8 +83,8 @@ class challengeController extends controller {
             tags
         };
 
-        
-        if(req.file){
+
+        if (req.file) {
             // make other sizes for cover
             let image_name = this.imageResize(req.file);
             challenge_data.cover = image_name;
@@ -57,7 +95,7 @@ class challengeController extends controller {
 
         await newChallenge.save();
 
-        return res.redirect('/cl/');  
+        return res.redirect('/cl/');
     }
 
     imageResize(image) {
@@ -69,14 +107,17 @@ class challengeController extends controller {
             let w = size.w;
             let h = size.h;
             let imageName = `${imageInfo.name}-${w+'X'+h}${imageInfo.ext}`;
-            addresImages[w+'X'+h] = this.getUrlImage(`${image.destination}/${imageName}`);
-            
+            addresImages[w + 'X' + h] = this.getUrlImage(`${image.destination}/${imageName}`);
+
             sharp(image.path)
-                .resize(w,h)
+                .resize(w, h)
                 .toFile(`${image.destination}/${imageName}`);
         }
 
-        [{w:360,h:360}].map(resize);
+        [{
+            w: 360,
+            h: 360
+        }].map(resize);
 
         return addresImages;
     }
@@ -89,4 +130,3 @@ class challengeController extends controller {
 }
 
 module.exports = new challengeController();
-
