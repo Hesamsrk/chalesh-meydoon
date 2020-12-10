@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card m-2 " style="width: 40%;position: relative; border-radius: 1rem; ">
   <% if(challenge.cover !== undefined ){%>
   <img
     class="card-img-top"
@@ -13,9 +13,9 @@
   <div class="card-body">
     <h3 class="card-title"><%= challenge.challenge_title %></h3>
     <p class="card-text"><%=challenge.body%></p>
-    <a href="/cl/show/<%=challenge.id%>" class="btn btn-primary">مشاهده</a>
+    <a href="/cl/show/<%=challenge.id%>" class="btn btn-primary" style="bottom: 5px;right: 5px;">مشاهده</a>
   </div>
   <div class="card-footer text-muted">
-     <%=ToPersianDate(challenge.createdAt).fromNow()%> توسط <%=username%>
+     <%=ToPersianDate(challenge.createdAt).fromNow()%><br><%=username%>
   </div>
 </div>

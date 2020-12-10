@@ -1,42 +1,42 @@
-<div
-  class="d-flex justify-content-between align-items-center mb-3 border-bottom-1"
->
-  <h2>لیست چالش ها</h2>
-  <div class="btn-group">
-    <a href="/cl/create" class="btn btn-sm btn-primary">ایجاد چالش جدید</a>
-  </div>
-</div>
-<div class="row">
-  <!-- Blog Entries Column -->
-  <div class="col-md-8">
-    <!-- Search Widget -->
-    <div class="card my-2">
-      <h5 class="card-header">جستجو</h5>
-      <div class="card-body">
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="مثلا : ختم جز سی قرآن کریم :)"
-          />
-          <span class="input-group-append">
-            <button class="btn btn-secondary" type="button">برو</button>
-          </span>
-        </div>
-      </div>
-    </div>
-    <!-- Blog Post -->
-    <% let i =0;%>
-    <% challenges.forEach(challenge => {let username = usernames[i]; %>
-      
-      
-      <%- include(viewPath('layouts/challenge') ,{challenge,username}) %> 
-      <%i++;%>
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio" style="margin-top: 6rem;">
+          <div class="container">
+              <!-- Portfolio Section Heading-->
+              <h2 class="page-section-heading text-center text-uppercase text-secondary mb-4">چالش ها</h2>
+              <!-- Icon Divider-->
+              <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                  <div class="divider-custom-line"></div>
+              </div>
 
-    <%})%>
-    <!-- Pagination -->
+              <div class="input-group mx-auto mb-5" style="width: 60%;">
+                <button src="cl/create" class="btn btn-primary mx-2" type="button" style="border-radius: 0 5rem 5rem 0;">ساخت چالش جدید <i class="fas fa-plus"></i></button>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="مثلا : ختم جز سی قرآن کریم :)"
+                />
+                <span class="input-group-append">
+                  <button class="btn btn-secondary mx-2" type="button" style="border-radius: 5rem;">برو</button>
+                </span>
+              </div>
 
+              <!-- Portfolio Grid Items-->
+              <div class="row justify-content-center">
+                <% let i =0;%>
+                <% challenges.forEach(challenge => {let username = usernames[i]; %>
+                  
+                  
+                  <%- include(viewPath('layouts/challenge') ,{challenge,username}) %> 
+                  <%i++;%>
+            
+                <%})%>
+                <!-- Pagination -->
+            
+            
+                <%- include(viewPath('layouts/pagination') ,{ pagination : challenges}) %>
 
-    <%- include(viewPath('layouts/pagination') ,{ pagination : challenges}) %>
-  </div>
-</div>
+              </div>
+          </div>
+      </section>

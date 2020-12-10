@@ -22,7 +22,8 @@ module.exports = class Helpers {
             },
             viewPath: this.viewPath,
             ...this.getGlobalVaribales(),
-            old: this.old
+            old: this.old,
+            url : this.req.url
         }
     }
 
