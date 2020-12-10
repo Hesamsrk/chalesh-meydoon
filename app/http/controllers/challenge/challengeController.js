@@ -19,7 +19,30 @@ class challengeController extends controller {
         let challenge = await Challenge.findOne({
             _id : req.params.id
         });
-        res.render('home/cl/show',{challenge})
+        let followed =  challenge.followers.includes(req.user.id);
+        res.render('home/cl/show',{challenge,followed})
+    }
+
+    async follow(req,res){
+        let challenge = await Challenge.findOne({
+            _id : req.params.id
+        });
+
+        if(challenge.followers.includes(req.user.id)){
+            challenge.followers.remove(req.user.id);
+            challenge.save();
+            this.back(req,res);
+        }
+        else{
+            challenge.followers.push(req.user.id);
+            challenge.save();
+            this.back(req,res);
+        }
+    }
+    async addPost(req,res){
+        let challenge = await Challenge.findOne({
+            _id : req.params.id
+        });
     }
 
     async showChallengeList(req, res) {
@@ -29,7 +52,7 @@ class challengeController extends controller {
             sort: {
                 createdAt: 1
             },
-            limit: 5
+            limit: 6
         });
         let users = [];
         try {
@@ -43,7 +66,7 @@ class challengeController extends controller {
             }
             res.render('home/cl/index', {
                 title: 'چالش ها',
-                challenges: challenges.docs,
+                challenges: challenges,
                 usernames : users.map(user=>user.email)
             })
         } catch (error) {

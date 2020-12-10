@@ -27,13 +27,22 @@
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
+
+                <!-- Masthead Subheading-->
+                <div class="container d-flex align-items-center flex-column mb-5 w-50">
+                    <p class="text-secondary">چالش میدون محلی برای به چالش کشیدن خود و دیگران است!<br>
+                        آیا در نواختن یک ساز تخصص دارید؟<br>
+                        آیا معتقدد هستید عکسی که از یک منظره ثبت کرده اید بهترین عکس ممکن است؟<br>
+                        آیا فکر میکنید در نقاشی یا هر هنر دیگری رقیب ندارید؟<br>
+                         پس خود را به چالش بکشید و بگذارید همگان این ادعا را قضاوت کنند ! </p>
+                </div>
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Item 1-->
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><h3 class="text-secondary">سفر!</h3></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="" />
                         </div>
@@ -42,7 +51,7 @@
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><h3 class="text-secondary">آشپزی!</h3></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/cake.png" alt="" />
                         </div>
@@ -51,7 +60,7 @@
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><h3 class="text-secondary">استعداد ها!</h3></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/circus.png" alt="" />
                         </div>
@@ -60,7 +69,7 @@
                     <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><h3 class="text-secondary">بازی ها!</h3></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/game.png" alt="" />
                         </div>
@@ -69,7 +78,7 @@
                     <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><h3 class="text-secondary">دیگر چه؟</h3></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="" />
                         </div>
@@ -78,7 +87,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><h3 class="text-secondary">شما بگویید!</h3></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="" />
                         </div>
@@ -104,7 +113,7 @@
                 </div>
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
-                    <a class="btn btn-xl btn-outline-light" href="#contact">
+                    <a class="btn btn-xl btn-outline-light js-scroll-trigger" href="#contact">
                         <i class="far fa-id-badge mr-2"></i>
                         تماس با ما !
                     </a>
@@ -118,33 +127,32 @@
                 <!-- Contact Section Form-->
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
-                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
-                        <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                        <form class="needs-validation" id="contactForm" name="sentMessage"  method="POST" action="/contactUs" >
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>اسم</label>
-                                    <input class="form-control" id="name" type="text" placeholder="اسم" required="required" data-validation-required-message="Please enter your name." />
+                                    <input class="form-control" id="name" type="text" placeholder="اسم" required="required" data-validation-required-message="لطفا نام خود را وارد کنید!" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>ایمیل</label>
-                                    <input class="form-control" id="email" type="email" placeholder="ایمیل" required="required" data-validation-required-message="Please enter your email address." />
+                                    <input class="form-control" id="email" type="email" placeholder="ایمیل" required="required" data-validation-required-message="لطفا ایمیل خود را وارد کنید!" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>شماره تماس (دلخواه)</label>
-                                    <input class="form-control" id="phone" type="tel" placeholder="شماره تماس (دلخواه)" required="required" data-validation-required-message="Please enter your phone number." />
+                                    <input class="form-control" id="phone" type="tel" placeholder="شماره تماس (دلخواه)"  data-validation-required-message="لطفا شماره خود را وارد کنید!" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls mb-0 pb-2">
                                     <label>پیام</label>
-                                    <textarea class="form-control" id="message" rows="5" placeholder="پیام" required="required" data-validation-required-message="Please enter a message."></textarea>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="پیام" required="required" data-validation-required-message="لطفا پیام خود را وارد کنید!" ></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>

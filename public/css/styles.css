@@ -1,15 +1,5 @@
 @charset "UTF-8";
-/*!
-* Start Bootstrap - Freelancer v6.0.5 (https://startbootstrap.com/theme/freelancer)
-* Copyright 2013-2020 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
-*/
-/*!
- * Bootstrap v4.5.3 (https://getbootstrap.com/)
- * Copyright 2011-2020 The Bootstrap Authors
- * Copyright 2011-2020 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -20,14 +10,14 @@
   --yellow: #ffc107;
   --green: #28a745;
   --teal: var(--primary);
-  --cyan: #17a2b8;
+  --cyan: var(--primary);
   --white: #fff;
-  --gray: #6c757d;
+  --gray: #6c7d7d;
   --gray-dark: #343a40;
   --primary: #ea911c;
   --secondary: #213a8f;
   --success: #28a745;
-  --info: #17a2b8;
+  --info: var(--primary);
   --warning: #ffc107;
   --danger: #dc3545;
   --light: #f8f9fa;
@@ -2544,8 +2534,8 @@ fieldset:disabled a.btn {
 }
 .btn-info.disabled, .btn-info:disabled {
   color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .show > .btn-info.dropdown-toggle {
   color: #fff;
@@ -2752,8 +2742,8 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-info {
-  color: #17a2b8;
-  border-color: #17a2b8;
+  color: var(--primary);
+  border-color: var(--primary);
 }
 .btn-outline-info:hover {
   color: #fff;
@@ -2764,13 +2754,13 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
 .btn-outline-info.disabled, .btn-outline-info:disabled {
-  color: #17a2b8;
+  color: var(--primary);
   background-color: transparent;
 }
 .btn-outline-info:not(:disabled):not(.disabled):active, .btn-outline-info:not(:disabled):not(.disabled).active, .show > .btn-outline-info.dropdown-toggle {
   color: #fff;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: var(--primary);
+  border-color: var(--primary);
 }
 .btn-outline-info:not(:disabled):not(.disabled):active:focus, .btn-outline-info:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-info.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
@@ -4721,7 +4711,7 @@ a.badge-success:focus, a.badge-success.focus {
 
 .badge-info {
   color: #fff;
-  background-color: #17a2b8;
+  background-color: var(--primary);
 }
 a.badge-info:hover, a.badge-info:focus {
   color: #fff;
@@ -6103,7 +6093,7 @@ button.bg-success:focus {
 }
 
 .bg-info {
-  background-color: #17a2b8 !important;
+  background-color: var(--primary) !important;
 }
 
 a.bg-info:hover, a.bg-info:focus,
@@ -9799,7 +9789,7 @@ a.text-success:hover, a.text-success:focus {
 }
 
 .text-info {
-  color: #17a2b8 !important;
+  color: var(--primary) !important;
 }
 
 a.text-info:hover, a.text-info:focus {
@@ -10155,7 +10145,7 @@ h3 {
   background-color: var(--primary);
 }
 .portfolio .portfolio-item .portfolio-item-caption:hover {
-  opacity: 0.5;
+  opacity: 0.9;
 }
 .portfolio .portfolio-item .portfolio-item-caption .portfolio-item-caption-content {
   font-size: 1.5rem;
@@ -10252,4 +10242,11 @@ form .row:first-child .floating-label-form-group {
   background-color:rgba(19, 19, 18, 0.493);
   border-width: 1px;
 
+}
+
+.cm-active-button{
+  background-color : var(--primary)
+}
+.white-to-blue-button{
+  background-color: var(--secondary);
 }

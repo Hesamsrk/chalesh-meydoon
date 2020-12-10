@@ -7,10 +7,10 @@ const PostSchema = Schema({
     body : { type : String , required : true },
     images : { type : String , required : true },
     videos : { type : String , required : true },
-    documents : { type : String , required : true },
-    creditCount :{ type : Number , default : 0 },
+    sounds : { type : String , required : true },
+    credits :[Schema.Types.ObjectId],
     viewCount : { type : Number , default : 0 },
-    commentCount : { type : Number , default : 0 },
+    comments : [{user: Schema.Types.ObjectId, body: String}],
 } , { timestamps : true });
 
 

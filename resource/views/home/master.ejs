@@ -68,15 +68,15 @@
           <ul class="navbar-nav">
              <% if(auth.check){%>
             <li class="nav-item">
-              <a class="nav-link" href="/cl">چالش ها</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded <%if(url == '/cl'){%><%="cm-active-button"%><%}%> " href="/cl">چالش ها</a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="#">تنظیمات</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#">تنظیمات</a>
             </li>
             <% if(auth.user.admin){ %>
-                <li class="nav-item">
-                  <a class="nav-link" href="/admin">ورود به پنل مدیریت</a>
+                <li class="nav-item ">
+                  <a class="nav-link py-3 px-0 px-lg-3 rounded " href="/admin">ورود به پنل مدیریت</a>
                 </li>
             <%}%>
             <%}%>
@@ -85,14 +85,14 @@
             <% if(auth.check) { %>
               <li class="nav-item mx-0 mx-lg-1">
                 <a
-                  class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                  class="nav-link py-3 px-0 px-lg-3 rounded "
                   href="/panel"
                   >پنل کاربری</a
                 >
               </li>
               <li class="nav-item mx-0 mx-lg-1">
                 <a
-                  class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                  class="nav-link py-3 px-0 px-lg-3 rounded "
                   href="/logout"
                   >خروج</a
                 >
@@ -100,14 +100,14 @@
             <% } else { %>
               <li class="nav-item mx-0 mx-lg-1">
                 <a
-                  class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                  class="nav-link py-3 px-0 px-lg-3 rounded <%if(url == '/auth/register'){%><%="cm-active-button"%><%}%> "
                   href="/auth/register"
                   >عضویت</a
                 >
               </li>
               <li class="nav-item mx-0 mx-lg-1">
                 <a
-                  class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                  class="nav-link py-3 px-0 px-lg-3 rounded <%if(url == '/auth/login'){%><%="cm-active-button"%><%}%> "
                   href="/auth/login"
                   >ورود</a
                 >

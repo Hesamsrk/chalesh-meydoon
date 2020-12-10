@@ -9,7 +9,7 @@ const challengeSchema = Schema({
     cover : { type : Object , required : false },
     tags : { type : String , default:""},
     postCount : { type : Number , default : 0 },
-    userCount : { type : Number , default : 0 },
+    followers : [Schema.Types.ObjectId],
     viewCount : { type : Number , default : 0 },
 } , { timestamps : true });
 challengeSchema.plugin(mongoosePaginate);

@@ -21,5 +21,7 @@ router.get('/create' , ChallengeController.showCreateForm)
 router.post('/create' ,uploadImage.single('cover'), convertFileToField.handle,challengeValidator.handle(), ChallengeController.saveChallengeProcess)
 
 router.get('/show/:id' , ChallengeController.showChallenge)
+router.get('/follow/:id' , ChallengeController.follow)
+router.get('/addPost/:id' , ChallengeController.addPost)
 
 module.exports = router;

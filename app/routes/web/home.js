@@ -13,4 +13,7 @@ router.get('/logout' , (req ,res) => {
     res.redirect('/');
 });
 
+router.post('/contactUs',homeController.contactUs);
+router.get('/thanks' , homeController.thanks);
+
 module.exports = router;

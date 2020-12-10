@@ -1,7 +1,7 @@
 const path = require('path');
 const autoBind = require('auto-bind');
 const moment = require('moment-jalaali')
-
+const Challenge = require('app/models/challenge');
 
 
 module.exports = class Helpers {
@@ -23,7 +23,8 @@ module.exports = class Helpers {
             viewPath: this.viewPath,
             ...this.getGlobalVaribales(),
             old: this.old,
-            url : this.req.url
+            url: this.req.url,
+            textOverflowCloser: this.textOverflowCloser
         }
     }
 
@@ -45,4 +46,19 @@ module.exports = class Helpers {
     ToPersianDate(date) {
         return moment(date)
     }
+
+    textOverflowCloser(text) {
+        let t = String(text);
+        let n = 150;
+        let ans = '';
+        if (t.length > n) {
+            ans += t.substring(0, n - 4);
+            ans += "...";
+            return ans;
+        } else {
+            return t;
+        }
+
+    }
+
 }

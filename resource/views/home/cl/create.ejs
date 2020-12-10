@@ -1,78 +1,84 @@
-<div
-  class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom "
->
-  <h2>ایجاد چالش جدید</h2>
-</div>
+
+<div class="row pt-3 justify-content-center " style="margin-top: 6rem;margin-bottom: 5rem;">
+  <div class="col-8">
+      <div class="card card-default">
+          <div class="card-header "><h5>ورود</h5></div>
+          <div class="card-body">
+              
 <form
-  autocomplete="off"
-  class="form-horizontal"
-  action="/cl/create"
-  method="post"
-  enctype="multipart/form-data"
+autocomplete="off"
+class="form-horizontal"
+action="/cl/create"
+method="post"
+enctype="multipart/form-data"
 >
-  <%- include(viewPath('layouts/error-messages')) -%>
-  <input type="hidden" id="official" name="official" value="false"></input>
-  <div class="form-group row">
-    <div class="col">
-      <label for="challenge_title" class="control-label font-weight-bold"
-        >عنوان چالش</label
-      >
-      <input
-        type="text"
-        class="form-control"
-        name="challenge_title"
-        id="challenge_title"
-        placeholder="عنوان را وارد کنید"
-        value="<%= old('title') %>"
-      />
-    </div>
+<%- include(viewPath('layouts/error-messages')) -%>
+<input type="hidden" id="official" name="official" value="false"></input>
+<div class="form-group row">
+  <div class="col">
+    <label for="challenge_title" class="control-label font-weight-bold"
+      >عنوان چالش</label
+    >
+    <input
+      type="text"
+      class="form-control"
+      name="challenge_title"
+      id="challenge_title"
+      placeholder="عنوان را وارد کنید"
+      value="<%= old('title') %>"
+    />
   </div>
-  <div class="form-group row">
-    <div class="col">
-      <label for="body" class="control-label font-weight-bold"
-        >توضیحات چالش</label
-      >
-      <textarea
-        rows="5"
-        class="form-control"
-        name="body"
-        id="body"
-        placeholder="توضیحات را وارد کنید"
-      ><%= old('body') %></textarea
-      >
-    </div>
+</div>
+<div class="form-group row">
+  <div class="col">
+    <label for="body" class="control-label font-weight-bold"
+      >توضیحات چالش</label
+    >
+    <textarea
+      rows="5"
+      class="form-control"
+      name="body"
+      id="body"
+      placeholder="توضیحات را وارد کنید"
+    ><%= old('body') %></textarea
+    >
   </div>
-  <div class="form-group row">
-    <div class="col">
-      <label for="cover" class="control-label font-weight-bold"
-        >آواتار چالش</label
-      >
-      <input
-        type="file"
-        class="form-control"
-        name="cover"
-        id="cover"
-        placeholder="تصویر چالش را وارد کنید"
-      />
-    </div>
+</div>
+<div class="form-group row">
+  <div class="col">
+    <label for="cover" class="control-label font-weight-bold"
+      >آواتار چالش</label
+    >
+    <input
+      type="file"
+      class="form-control form-control-file"
+      name="cover"
+      id="cover"
+      placeholder="تصویر چالش را وارد کنید"
+    />
   </div>
-  <div class="form-group row">
-    <div class="col">
-      <label for="tags" class="control-label font-weight-bold">تگ ها</label>
-      <input
-        type="text"
-        class="form-control"
-        name="tags"
-        id="tags"
-        placeholder="تگ ها را وارد کنید"
-        value="<%= old('title') %>"
-      />
-    </div>
+</div>
+<div class="form-group row">
+  <div class="col">
+    <label for="tags" class="control-label font-weight-bold">تگ ها</label>
+    <input
+      type="text"
+      class="form-control"
+      name="tags"
+      id="tags"
+      placeholder="تگ ها را وارد کنید"
+      value="<%= old('title') %>"
+    />
   </div>
-  <div class="form-group row">
-    <div class="col">
-      <button type="submit" class="btn btn-danger">ارسال</button>
-    </div>
+</div>
+<div class="form-group row">
+  <div class="col">
+    <button type="submit" class="btn btn-danger">ارسال</button>
   </div>
+</div>
 </form>
 
+          </div>
+      </div>
+  </div>
+</div>

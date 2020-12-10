@@ -12,10 +12,15 @@
   <%}%>
   <div class="card-body">
     <h3 class="card-title"><%= challenge.challenge_title %></h3>
-    <p class="card-text"><%=challenge.body%></p>
+    <%let body = textOverflowCloser(challenge.body);%>
+    <p class="card-text"><%=body%></p>
     <a href="/cl/show/<%=challenge.id%>" class="btn btn-primary" style="bottom: 5px;right: 5px;">مشاهده</a>
   </div>
-  <div class="card-footer text-muted">
-     <%=ToPersianDate(challenge.createdAt).fromNow()%><br><%=username%>
+  <div class="card-footer text-muted" style="background-color: var(--secondary);">
+      <div class="d-inline-flex flex-row text-white">
+        <div class="p-2"><i class="far fa-clock"></i> <%=ToPersianDate(challenge.createdAt).fromNow()%></div>
+        <div class="p-2"><i class="far fa-user"></i> <%=username%></div>
+        <div class="p-2"><%=challenge.postCount%> <i class="fas fa-layer-group"></i></div>
+      </div>
   </div>
 </div>
