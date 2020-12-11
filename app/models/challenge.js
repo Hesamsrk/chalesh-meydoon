@@ -9,6 +9,7 @@ const challengeSchema = Schema({
     cover : { type : Object , required : false },
     tags : { type : String , default:""},
     postCount : { type : Number , default : 0 },
+    posts:[Schema.Types.ObjectId],
     followers : [Schema.Types.ObjectId],
     viewCount : { type : Number , default : 0 },
 } , { timestamps : true });

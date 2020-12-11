@@ -1,5 +1,6 @@
 const controller = require('app/http/controllers/controller');
 const Challenge = require('app/models/challenge');
+const Post = require('app/models/post');
 const sharp = require('sharp');
 const path = require("path");
 const rimraf = require('rimraf');
@@ -30,19 +31,54 @@ class challengeController extends controller {
 
         if(challenge.followers.includes(req.user.id)){
             challenge.followers.remove(req.user.id);
-            challenge.save();
+            await challenge.save();
             this.back(req,res);
         }
         else{
             challenge.followers.push(req.user.id);
-            challenge.save();
+            await challenge.save();
             this.back(req,res);
         }
     }
-    async addPost(req,res){
+
+
+    async showPostForm(req,res){
+        const title = 'ایجاد پست جدید';
         let challenge = await Challenge.findOne({
             _id : req.params.id
         });
+        console.log(challenge.id);
+        res.render('home/post/create', {
+            title,
+            challenge
+        });
+    }
+
+    async addPost(req ,res){
+        try{
+            let challenge = await Challenge.findOne({
+                _id : req.params.id
+            });
+            let postData = {
+                post_user: challenge.challenge_user,
+                post_challenge: challenge.id,
+                body: req.body.body,
+                images:req.body.images,
+                videos:req.body.videos,
+                sounds:req.body.sounds,
+            }
+            console.log("body:",req.body.body);
+            let newPost = new Post(postData);
+            console.log("postbody:",newPost.body);
+
+            challenge.posts.push(newPost.id);
+            challenge.postCount+=1;
+            await newPost.save();
+            await challenge.save();
+            res.redirect(`/cl/show/${req.params.id}`);
+        }catch(e){
+            console.log(e);
+        }
     }
 
     async showChallengeList(req, res) {

@@ -22,6 +22,6 @@ router.post('/create' ,uploadImage.single('cover'), convertFileToField.handle,ch
 
 router.get('/show/:id' , ChallengeController.showChallenge)
 router.get('/follow/:id' , ChallengeController.follow)
-router.get('/addPost/:id' , ChallengeController.addPost)
-
+router.get('/addPost/:id' , ChallengeController.showPostForm)
+router.post('/addPost/:id' , ChallengeController.addPost)
 module.exports = router;

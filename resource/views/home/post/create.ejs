@@ -1,0 +1,79 @@
+
+<div class="row pt-3 justify-content-center " style="margin-top: 6rem;margin-bottom: 5rem;">
+    <div class="col-8">
+        <div class="card card-default">
+            <div class="card-header "><h5>افزودن پست به : <%=challenge.challenge_title%></h5></div>
+            <div class="card-body">
+                
+  <form
+  autocomplete="off"
+  class="form-horizontal"
+  action="/cl/addPost/<%=challenge.id%>"
+  method="post"
+  enctype="multipart/form-data"
+  >
+  <%- include(viewPath('layouts/error-messages')) -%>
+  <div class="form-group row">
+    <div class="col">
+      <label for="body" class="control-label font-weight-bold"
+        >متن (اجباری)</label
+      >
+      <textarea
+        rows="5"
+        class="form-control"
+        name="body"
+        id="body"
+        placeholder="توضیحات را وارد کنید"
+      ><%= old('body') %></textarea
+      >
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <label for="pictures" class="control-label font-weight-bold"
+        >عکس ها</label
+      >
+      <input
+        type="file"
+        class="form-control form-control-file"
+        name="pictures"
+        id="pictures"
+        placeholder="تصاویر را وارد کنید"
+      />
+    </div>
+    <div class="col">
+        <label for="videos" class="control-label font-weight-bold"
+          >فیلم ها</label
+        >
+        <input
+          type="file"
+          class="form-control form-control-file"
+          name="videos"
+          id="videos"
+          placeholder="فیلم ها را وارد کنید"
+        />
+      </div>
+      <div class="col">
+        <label for="sounds" class="control-label font-weight-bold"
+          >صدا ها</label
+        >
+        <input
+          type="file"
+          class="form-control form-control-file"
+          name="sounds"
+          id="sounds"
+          placeholder="صدا ها را وارد کنید"
+        />
+      </div>
+  </div>
+  <div class="form-group row">
+    <div class="col">
+      <button type="submit" class="btn btn-danger">ثبت</button>
+    </div>
+  </div>
+  </form>
+  
+            </div>
+        </div>
+    </div>
+  </div>
