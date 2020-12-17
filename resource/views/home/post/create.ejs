@@ -12,6 +12,7 @@
   method="post"
   enctype="multipart/form-data"
   >
+  <input type="hidden" name="unique" id="unique" value="<%= unique() %>">
   <%- include(viewPath('layouts/error-messages')) -%>
   <div class="form-group row">
     <div class="col">
@@ -30,41 +31,18 @@
   </div>
   <div class="form-group row">
     <div class="col">
-      <label for="pictures" class="control-label font-weight-bold"
-        >عکس ها</label
+      <label for="files" class="control-label font-weight-bold"
+        >فایل ها</label
       >
       <input
         type="file"
         class="form-control form-control-file"
-        name="pictures"
-        id="pictures"
-        placeholder="تصاویر را وارد کنید"
+        name="files"
+        id="files"
+        placeholder="فایل ها را وارد کنید"
       />
+  
     </div>
-    <div class="col">
-        <label for="videos" class="control-label font-weight-bold"
-          >فیلم ها</label
-        >
-        <input
-          type="file"
-          class="form-control form-control-file"
-          name="videos"
-          id="videos"
-          placeholder="فیلم ها را وارد کنید"
-        />
-      </div>
-      <div class="col">
-        <label for="sounds" class="control-label font-weight-bold"
-          >صدا ها</label
-        >
-        <input
-          type="file"
-          class="form-control form-control-file"
-          name="sounds"
-          id="sounds"
-          placeholder="صدا ها را وارد کنید"
-        />
-      </div>
   </div>
   <div class="form-group row">
     <div class="col">

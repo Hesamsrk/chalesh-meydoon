@@ -47,7 +47,6 @@ class challengeController extends controller {
         let challenge = await Challenge.findOne({
             _id : req.params.id
         });
-        console.log(challenge.id);
         res.render('home/post/create', {
             title,
             challenge
@@ -63,13 +62,12 @@ class challengeController extends controller {
                 post_user: challenge.challenge_user,
                 post_challenge: challenge.id,
                 body: req.body.body,
-                images:req.body.images,
-                videos:req.body.videos,
-                sounds:req.body.sounds,
+                files:req.body.files,
+                unique:req.body.unique
             }
-            console.log("body:",req.body.body);
+
             let newPost = new Post(postData);
-            console.log("postbody:",newPost.body);
+
 
             challenge.posts.push(newPost.id);
             challenge.postCount+=1;

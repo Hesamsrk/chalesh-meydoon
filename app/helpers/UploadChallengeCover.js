@@ -28,7 +28,7 @@ const ImageStorage = multer.diskStorage({
     }
 })
 
-const uploadImage = multer({
+const UploadChallengeCover = multer({
     storage: ImageStorage,
     limits: {
         fileSize: 1024 * 1024 * 10
@@ -36,6 +36,6 @@ const uploadImage = multer({
 });
 
 module.exports = {
-    uploadImage,
+    UploadChallengeCover,
     getDirImage
 };

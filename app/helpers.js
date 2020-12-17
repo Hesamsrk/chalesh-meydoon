@@ -2,7 +2,7 @@ const path = require('path');
 const autoBind = require('auto-bind');
 const moment = require('moment-jalaali')
 const Challenge = require('app/models/challenge');
-
+const uniqueString = require('unique-string')
 
 module.exports = class Helpers {
 
@@ -24,7 +24,8 @@ module.exports = class Helpers {
             ...this.getGlobalVaribales(),
             old: this.old,
             url: this.req.url,
-            textOverflowCloser: this.textOverflowCloser
+            textOverflowCloser: this.textOverflowCloser,
+            unique:this.unique
         }
     }
 
@@ -59,6 +60,10 @@ module.exports = class Helpers {
             return t;
         }
 
+    }
+
+    unique(){
+       return uniqueString()
     }
 
 }

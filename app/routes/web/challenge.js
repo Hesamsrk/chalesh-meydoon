@@ -6,7 +6,8 @@ const ChallengeController = require('app/http/controllers/challenge/challengeCon
 
 
 // Helpers
-const {uploadImage} = require('app/helpers/uploadImage');
+const {UploadChallengeCover} = require('app/helpers/UploadChallengeCover');
+const {uploadPostFile} = require('app/helpers/uploadPostFile');
 
 // Middlewares
 const convertFileToField = require('app/http/middleware/convertFileToField')
@@ -18,10 +19,10 @@ const challengeValidator = require('app/http/validators/challengeValidator');
 router.get('/' , ChallengeController.showChallengeList)
 
 router.get('/create' , ChallengeController.showCreateForm)
-router.post('/create' ,uploadImage.single('cover'), convertFileToField.handle,challengeValidator.handle(), ChallengeController.saveChallengeProcess)
+router.post('/create' ,UploadChallengeCover.single('cover'), convertFileToField.handleCover,challengeValidator.handle(), ChallengeController.saveChallengeProcess)
 
 router.get('/show/:id' , ChallengeController.showChallenge)
 router.get('/follow/:id' , ChallengeController.follow)
 router.get('/addPost/:id' , ChallengeController.showPostForm)
-router.post('/addPost/:id' , ChallengeController.addPost)
+router.post('/addPost/:id' ,uploadPostFile.single('files'), convertFileToField.handleFiles,ChallengeController.addPost)
 module.exports = router;

@@ -1,6 +1,5 @@
 const controller = require('app/http/controllers/controller');
 const passport = require('passport');
-const uniqueString = require('unique-string')
 const userMailvarification = require('app/models/userMailvarification');
 const email = require('app/helpers/email');
 class registerController extends controller {
