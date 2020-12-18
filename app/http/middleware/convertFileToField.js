@@ -13,10 +13,10 @@ class convertFileToField extends middleware {
     }
 
     handleFiles(req , res , next) {
-        if(! req.file) 
+        if(! req.files) 
             req.body.files = undefined;
         else
-            req.body.files= req.file.filename
+            req.body.files = req.files.map(file => file.filename)
 
         next();
     }

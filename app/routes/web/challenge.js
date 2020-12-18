@@ -24,5 +24,6 @@ router.post('/create' ,UploadChallengeCover.single('cover'), convertFileToField.
 router.get('/show/:id' , ChallengeController.showChallenge)
 router.get('/follow/:id' , ChallengeController.follow)
 router.get('/addPost/:id' , ChallengeController.showPostForm)
-router.post('/addPost/:id' ,uploadPostFile.single('files'), convertFileToField.handleFiles,ChallengeController.addPost)
+router.post('/addPost/:id' ,uploadPostFile.array('files',5), convertFileToField.handleFiles,ChallengeController.addPost)
+router.get('/show/:id/post',ChallengeController.showPost)
 module.exports = router;

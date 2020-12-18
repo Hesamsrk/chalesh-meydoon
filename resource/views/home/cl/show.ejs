@@ -1,44 +1,57 @@
-<header class="masthead bg-primary text-white text-center cm_header">
+<header class="masthead bg-primary text-white text-center" style="background-image: url('<%=challenge.cover.original%>');background-size: cover;background-attachment: fixed;">
   <div class="container d-flex align-items-center flex-column">
-    <% if(challenge.cover !== undefined ){%>
-    <img
-      class="img-fluid rounded"
-      src="<%= challenge.cover['original'] %>"
-      alt=""
-    />
-    <%} else{%>
-
-    <img class="img-fluid rounded" src="/def_cover.jpg" alt="no image" />
-
-    <%}%>
     <!-- Masthead Heading-->
-    <h1 class="masthead-heading text-uppercase my-2">
-      <%= challenge.challenge_title %>
-    </h1>
-    <!-- Icon Divider-->
+    <div style="background-color: rgba(0, 0, 0, 0.24);padding: 2rem 3rem;border-radius: 40px;">
+      <h1 class="masthead-heading text-uppercase my-2">
+        <%= challenge.challenge_title %>
+      </h1>
+
+
+
+            <!-- Icon Divider-->
     <div class="divider-custom divider-light">
       <div class="divider-custom-line"></div>
       <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
       <div class="divider-custom-line"></div>
     </div>
-    <!-- Masthead Subheading-->
-    <p class="masthead-subheading font-weight-light mb-0">
-      <%=challenge.body%>
-    </p>
+        <!-- Masthead Subheading-->
+        <p class="masthead-subheading font-weight-light mb-0">
+          <%=challenge.body%>
+        </p>
+
+
+    <div class="mt-2">
+      <a class="btn btn-xl btn-outline-light" href="/cl">
+        بازگشت به صفحه چالش ها
+        <i class="fas fa-angle-double-left"></i>
+      </a>
+      <a class="btn btn-xl btn-outline-light" href="/cl/addPost/<%=challenge.id%>">
+        افزودن پست جدید
+        <i class="fas fa-plus"></i>
+      </a>
+      <a class="btn btn-xl btn-outline-light <%if(followed){%><%="white-to-blue-button"%><%}%>" href="/cl/follow/<%=challenge.id%>">
+        <%if(!followed){%>دنبال کردن <i class="far fa-user"></i><%}else{%>شما دنبال میکنید <i class="far fa-check-square"></i><%}%>
+      </a>
+    </div>
+
+    </div>
+
+
   </div>
-  <div class="mt-2">
-    <a class="btn btn-xl btn-outline-light" href="/cl">
-      بازگشت به صفحه چالش ها
-      <i class="fas fa-angle-double-left"></i>
-    </a>
-    <a class="btn btn-xl btn-outline-light" href="/cl/addPost/<%=challenge.id%>">
-      افزودن پست جدید
-      <i class="fas fa-plus"></i>
-    </a>
-    <a class="btn btn-xl btn-outline-light <%if(followed){%><%="white-to-blue-button"%><%}%>" href="/cl/follow/<%=challenge.id%>">
-      <%if(!followed){%>دنبال کردن <i class="far fa-user"></i><%}else{%>شما دنبال میکنید <i class="far fa-check-square"></i><%}%>
-    </a>
-  </div>
+
 </header>
 
-<section class="page-section portfolio"></section>
+<section class="page-section portfolio" style="background-image: url('/bg.jpg');background-size: cover;">
+      <!-- Portfolio Grid Items-->
+      <div class="row justify-content-center">
+        <% let i =0; %>
+        <% posts.docs.forEach(post => { %>
+        <% let username = usernames[i]; %>
+        <%- include(viewPath('layouts/post'),{post,username}) %>
+        <% i++;%><%}) %>
+      </div>
+      <!-- Pagination -->
+      <div class="mt-5">
+        <%- include(viewPath('layouts/pagination') ,{ pagination : posts}) %>
+      </div>
+</section>

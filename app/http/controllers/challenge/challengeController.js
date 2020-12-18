@@ -16,14 +16,6 @@ class challengeController extends controller {
     }
 
 
-    async showChallenge(req , res){
-        let challenge = await Challenge.findOne({
-            _id : req.params.id
-        });
-        let followed =  challenge.followers.includes(req.user.id);
-        res.render('home/cl/show',{challenge,followed})
-    }
-
     async follow(req,res){
         let challenge = await Challenge.findOne({
             _id : req.params.id
@@ -53,17 +45,50 @@ class challengeController extends controller {
         });
     }
 
+    async showPost(req,res){
+        
+        try{
+            let apost = await Post.findOne({
+                _id : req.params.id
+            });
+            console.log(apost.post_challenge);
+            let ch = await Challenge.findOne({
+                _id : apost.post_challenge
+            });
+
+            let title = 'نمایش پست';
+            title +=" از چالش: "
+            title += ch.challenge_title
+    
+    
+            res.render('home/post/show', {
+                title,
+                challenge:ch,
+                post:apost
+            });
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     async addPost(req ,res){
         try{
             let challenge = await Challenge.findOne({
                 _id : req.params.id
             });
             let postData = {
-                post_user: challenge.challenge_user,
+                post_user: req.user.id,
                 post_challenge: challenge.id,
                 body: req.body.body,
-                files:req.body.files,
                 unique:req.body.unique
+            }
+
+
+
+            if (req.files) {
+                // make other sizes for cover
+                let file_data = await this.ClassifyPostFiles(req.files);
+                postData.files = file_data;
             }
 
             let newPost = new Post(postData);
@@ -78,6 +103,56 @@ class challengeController extends controller {
             console.log(e);
         }
     }
+    async ClassifyPostFiles(files){
+        const paths = files.map(file=>file.path).map(l => this.getUrlImage(l,6));
+        const mimes = files.map(file=>file.mimetype);
+        let types = []
+
+        mimes.forEach(mime =>{
+            let index = mime.indexOf("/");
+            types.push(mime.substring(0,index))
+        })
+        console.log(paths);
+        console.log(types);
+        let answer = {};
+        answer.image =[]
+        answer.audio =[]
+        answer.video =[]
+        for(let i=0;i<paths.length;i++){
+            answer[types[i]].push(paths[i])
+        }
+        return answer;
+    }
+    
+    async showChallenge(req , res){
+        let challenge = await Challenge.findOne({
+            _id : req.params.id
+        });
+
+        let page = req.query.page || 1;
+        let posts = await Post.paginate({post_challenge : challenge.id}, {
+            page,
+            sort: {
+                createdAt: 1
+            },
+            limit: 6
+        });
+
+        let users = [];
+        for (let i of posts.docs) {
+            let id = i.post_user;
+            let user = await User.findOne({
+                _id : id
+            });
+            users.push(user)
+
+        }
+        let followed =  challenge.followers.includes(req.user.id);
+        res.render('home/cl/show',{challenge,followed,posts,usernames : users.map(user=>user.email)})
+    }
+
+
+
 
     async showChallengeList(req, res) {
         let page = req.query.page || 1;
@@ -100,7 +175,7 @@ class challengeController extends controller {
             }
             res.render('home/cl/index', {
                 title: 'چالش ها',
-                challenges: challenges,
+                challenges,
                 usernames : users.map(user=>user.email)
             })
         } catch (error) {
@@ -164,7 +239,7 @@ class challengeController extends controller {
             let w = size.w;
             let h = size.h;
             let imageName = `${imageInfo.name}-${w+'X'+h}${imageInfo.ext}`;
-            addresImages[w + 'X' + h] = this.getUrlImage(`${image.destination}/${imageName}`);
+            addresImages[w + 'X' + h] = this.getUrlImage(`${image.destination}/${imageName}`,8);
 
             sharp(image.path)
                 .resize(w, h)
@@ -179,8 +254,8 @@ class challengeController extends controller {
         return addresImages;
     }
 
-    getUrlImage(dir) {
-        return dir.substring(8);
+    getUrlImage(dir,i) {
+        return dir.substring(i);
     }
 
 

@@ -10230,7 +10230,6 @@ form .row:first-child .floating-label-form-group {
 }
 
 .cm_header{
-  background: rgb(255,213,0);
   background: linear-gradient(183deg, rgba(255,213,0,0.5947421204810048) 0%, rgba(254,182,0,0.7908205518535539) 38%, rgba(234,145,28,0.8804564061952906) 100%);
   filter: blur(0.3); 
 }
@@ -10250,3 +10249,12 @@ form .row:first-child .floating-label-form-group {
 .white-to-blue-button{
   background-color: var(--secondary);
 }
+
+.post-image{
+  width: 80%;
+  display: block;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+

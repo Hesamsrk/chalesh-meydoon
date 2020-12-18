@@ -3,7 +3,6 @@ const autoBind = require('auto-bind');
 const moment = require('moment-jalaali')
 const Challenge = require('app/models/challenge');
 const uniqueString = require('unique-string')
-
 module.exports = class Helpers {
 
     constructor(req, res) {
