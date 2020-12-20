@@ -1,17 +1,14 @@
 <div class=" col-lg-4 col-md-6 col-sm-12 col-12 mt-2 px-2 " >
 <div class = "card" style="position: relative;border-radius: 40px;">
-  <% if(challenge.cover !== undefined ){%>
+
     <img
       class="card-img-top"
       src="<%= challenge.cover['360X360'] %>"
       alt="challenge cover"
       style="border-radius: 40px;"
+      srcset="<%= challenge.cover['360X360'] %>    /def_cover.png"
     />
-    <%} else{%>
-  
-    <img class="card-img-top " src="/def_cover.png" alt="challenge cover" style="border-radius: 40px;"/>
-  
-    <%}%>
+
     <div class="card-body">
       <h3 class="card-title"><%= challenge.challenge_title %></h3>
       <%let body = textOverflowCloser(challenge.body);%>

@@ -231,7 +231,7 @@ class challengeController extends controller {
     imageResize(image) {
         const imageInfo = path.parse(image.path);
         let addresImages = {};
-        addresImages['original'] = this.getUrlImage(`${image.destination}/${image.filename}`);
+        addresImages['original'] = this.getUrlImage(`${image.destination}/${image.filename}`,8);
 
         const resize = size => {
             let w = size.w;
