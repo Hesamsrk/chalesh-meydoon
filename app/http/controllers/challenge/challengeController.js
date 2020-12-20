@@ -51,7 +51,6 @@ class challengeController extends controller {
             let apost = await Post.findOne({
                 _id : req.params.id
             });
-            console.log(apost.post_challenge);
             let ch = await Challenge.findOne({
                 _id : apost.post_challenge
             });
@@ -112,8 +111,7 @@ class challengeController extends controller {
             let index = mime.indexOf("/");
             types.push(mime.substring(0,index))
         })
-        console.log(paths);
-        console.log(types);
+        
         let answer = {};
         answer.image =[]
         answer.audio =[]

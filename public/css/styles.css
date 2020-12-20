@@ -10258,3 +10258,6 @@ form .row:first-child .floating-label-form-group {
   margin-bottom: 10px;
 }
 
+.cm-item{
+  width : 80%;
+}

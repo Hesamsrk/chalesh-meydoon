@@ -1,26 +1,26 @@
-<div class="card m-2 " style="max-width: 35%; border-radius: 1rem; background-color: rgba(0, 13, 56, 0.308);z-index: 99;">
-    <% if(post.cover !== undefined ){%>
-    <img
-      class="card-img-top"
-      src="<%= post.cover['360X360'] %>"
-      alt="post cover"
-    />
-    <%} else{%>
-  
-    <img class="card-img-top" src="/def_cover.png" alt="challenge cover" style=" margin-left: auto;margin-right: auto;margin-top: 10pt;" />
-  
-    <%}%>
-    <div class="card-body">
+<div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-2 px-2">
+  <div class="card" style="position: relative; border-radius: 40px;height: 100%;" >
 
+    <div class="card-body" style="position: relative;">
       <%let body = textOverflowCloser(post.body);%>
-      <p class="card-text rounded p-2 text-white" style="background-color: rgba(0, 0, 0, 0.219);"><%=body%></p>
-      <a href="/cl/show/<%=post.id%>/post" class="btn btn-primary" style="bottom: 5px;right: 5px;">مشاهده</a>
+      <p class="card-text "><%=body%></p>
+      <a href="/cl/show/<%=post.id%>/post" class="btn btn-primary" style="border-radius: 40px; position: relative;">مشاهده</a>
     </div>
-    <div class="card-footer text-muted " style="background-color: rgba(240, 248, 255, 0.274);">
-        <div class="d-inline-flex flex-row text-white">
-          <div class="p-2 text-secondary font-weight-bold"><i class="far fa-clock "></i> <%=ToPersianDate(post.createdAt).fromNow()%></div>
-          <div class="p-2 text-secondary font-weight-bold"><i class="far fa-user"></i> <%=username%></div>
-          <div class="p-2 text-secondary font-weight-bold"><%=post.credits%> <i class="fas fa-layer-group"></i></div>
+    <div class="card-footer text-muted bg-secondary " style="border-radius: 40px ;height: 50px;">
+      <div
+        class="d-inline-flex flex-row text-white justify-content-center" style="width: 100%;"
+      >
+        <div class="p-2 text-white d-flex " style="font-size: x-small;">
+          <i class="far fa-clock"></i>
+          <%=ToPersianDate(post.createdAt).fromNow()%>
         </div>
+        <div class="p-2 text-white d-flex " style="font-size: x-small;">
+          <i class="far fa-user"></i> <%=username%>
+        </div>
+        <div class="p-2 text-white d-flex " style="font-size: x-small;">
+           <a href=""><i class="far fa-heart ml-1"></i><%=post.credits.length%></a>
+        </div>
+      </div>
     </div>
   </div>
+</div>

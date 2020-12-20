@@ -1,26 +1,29 @@
-<div class="card m-2 " style="width: 40%;position: relative; border-radius: 1rem; ">
+<div class=" col-lg-4 col-md-6 col-sm-12 col-12 mt-2 px-2 " >
+<div class = "card" style="position: relative;border-radius: 40px;">
   <% if(challenge.cover !== undefined ){%>
-  <img
-    class="card-img-top"
-    src="<%= challenge.cover['360X360'] %>"
-    alt="challenge cover"
-  />
-  <%} else{%>
-
-  <img class="card-img-top" src="/def_cover.png" alt="challenge cover" />
-
-  <%}%>
-  <div class="card-body">
-    <h3 class="card-title"><%= challenge.challenge_title %></h3>
-    <%let body = textOverflowCloser(challenge.body);%>
-    <p class="card-text"><%=body%></p>
-    <a href="/cl/show/<%=challenge.id%>" class="btn btn-primary" style="bottom: 5px;right: 5px;">مشاهده</a>
-  </div>
-  <div class="card-footer text-muted" style="background-color: var(--secondary);">
-      <div class="d-inline-flex flex-row text-white">
-        <div class="p-2"><i class="far fa-clock"></i> <%=ToPersianDate(challenge.createdAt).fromNow()%></div>
-        <div class="p-2"><i class="far fa-user"></i> <%=username%></div>
-        <div class="p-2"><%=challenge.postCount%> <i class="fas fa-layer-group"></i></div>
-      </div>
-  </div>
+    <img
+      class="card-img-top"
+      src="<%= challenge.cover['360X360'] %>"
+      alt="challenge cover"
+      style="border-radius: 40px;"
+    />
+    <%} else{%>
+  
+    <img class="card-img-top " src="/def_cover.png" alt="challenge cover" style="border-radius: 40px;"/>
+  
+    <%}%>
+    <div class="card-body">
+      <h3 class="card-title"><%= challenge.challenge_title %></h3>
+      <%let body = textOverflowCloser(challenge.body);%>
+      <p class="card-text"><%=body%></p>
+      <a href="/cl/show/<%=challenge.id%>" class="btn btn-primary" style="bottom: 5px;right: 5px;border-radius: 40px;">مشاهده</a>
+    </div>
+    <div class="card-footer text-muted " style="background-color: var(--secondary);border-radius: 40px;font-size: x-small;">
+        <div class="d-inline-flex flex-row text-white  justify-content-center">
+          <div class="p-2"><i class="far fa-clock"></i> <%=ToPersianDate(challenge.createdAt).fromNow()%></div>
+          <div class="p-2"><i class="far fa-user"></i> <%=username%></div>
+          <div class="p-2"><i class="fas fa-layer-group"></i> <%=challenge.postCount%></div>
+        </div>
+    </div>
+</div>
 </div>
