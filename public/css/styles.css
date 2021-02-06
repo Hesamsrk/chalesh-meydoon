@@ -10261,3 +10261,21 @@ form .row:first-child .floating-label-form-group {
 .cm-item{
   width : 80%;
 }
+
+.curved {
+  position: relative;
+  background: white;
+  height: 20vh;
+}
+
+.curved::after {
+  content: '';
+  border-top-left-radius: 50% 100%;
+  border-top-right-radius: 50% 100%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: var(--secondary);
+  height: 20%;
+}
+
