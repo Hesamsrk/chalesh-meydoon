@@ -24,8 +24,8 @@ module.exports = class Application {
     setupExpress() {
 
         try {
-            let privateKey  = fs.readFileSync('SSL_CERTIFICATION/server.key', 'utf8');
-            let certificate = fs.readFileSync('SSL_CERTIFICATION/server.crt', 'utf8');
+            let privateKey  = fs.readFileSync('ssl/private.txt', 'utf8');
+            let certificate = fs.readFileSync('ssl/cert.txt', 'utf8');
             let credentials = {key: privateKey, cert: certificate};
             let httpsServer = https.createServer(credentials, app);
             httpsServer.listen(config.port , () => console.log(`Listening on port ${config.port}`));
