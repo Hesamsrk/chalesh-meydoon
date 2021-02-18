@@ -1,18 +1,18 @@
 const express = require('express'); // main framework
 const app = express();
 const http = require('http');
+const https = require('https');
 const bodyParser = require('body-parser'); // handle post data
 const cookieParser = require('cookie-parser'); // handle cookies
-const validator = require('express-validator'); // handle valitaion
+const validator = require('express-validator'); // handle validation
 const session = require('express-session'); // handle sessions
 const mongoose = require('mongoose'); // ease working with mongoDB
 const flash = require('connect-flash'); // work with flash data (show errors, warning and etc. to user)
 const passport = require('passport'); // validate input data
 const Helpers = require('app/helpers'); // some helping functions
 const rememberLogin = require('app/http/middleware/rememberLogin'); // remembers if the user is already logged in
-const { fileLoader } = require('ejs');
-const colors = require('colors');
 const logger = require('app/logger');
+const fs = require('fs');
 module.exports = class Application {
     constructor() {
         this.setupExpress(); // create and config server  
@@ -22,8 +22,13 @@ module.exports = class Application {
     }
 
     setupExpress() {
-        const server = http.createServer(app);
-        server.listen(config.port , () => console.log(`Listening on port ${config.port}`));
+        let privateKey  = fs.readFileSync('SSL_CERTIFICATION/server.key', 'utf8');
+        let certificate = fs.readFileSync('SSL_CERTIFICATION/server.crt', 'utf8');
+        let credentials = {key: privateKey, cert: certificate};
+        let httpServer = http.createServer(app);
+        let httpsServer = https.createServer(credentials, app);
+        httpServer.listen(config.port , () => console.log(`Listening on port ${config.port}`));
+        httpsServer.listen(config.port , () => console.log(`Listening on port ${config.port}`));
     }
 
     setMongoConnection() {
