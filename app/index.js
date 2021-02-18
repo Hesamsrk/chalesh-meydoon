@@ -22,13 +22,19 @@ module.exports = class Application {
     }
 
     setupExpress() {
-        let privateKey  = fs.readFileSync('SSL_CERTIFICATION/server.key', 'utf8');
-        let certificate = fs.readFileSync('SSL_CERTIFICATION/server.crt', 'utf8');
-        let credentials = {key: privateKey, cert: certificate};
-        let httpServer = http.createServer(app);
-        let httpsServer = https.createServer(credentials, app);
-        httpServer.listen(config.port , () => console.log(`Listening on port ${config.port}`));
-        httpsServer.listen(config.port , () => console.log(`Listening on port ${config.port}`));
+
+        try {
+            let privateKey  = fs.readFileSync('SSL_CERTIFICATION/server.key', 'utf8');
+            let certificate = fs.readFileSync('SSL_CERTIFICATION/server.crt', 'utf8');
+            let credentials = {key: privateKey, cert: certificate};
+            let httpsServer = https.createServer(credentials, app);
+            httpsServer.listen(config.port , () => console.log(`Listening on port ${config.port}`));
+        }catch(err){
+            console.log(err,"\n https failed to run! running http...")
+            let httpServer = http.createServer(app);
+            httpServer.listen(config.port , () => console.log(`Listening on port ${config.port}`));
+        }
+
     }
 
     setMongoConnection() {
